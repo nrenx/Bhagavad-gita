@@ -9,13 +9,7 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
-      "src": "/icon-512.png", 
+      "src": "/images/logo.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
@@ -33,21 +27,21 @@
       "short_name": "Chapters",
       "description": "Browse all 18 chapters",
       "url": "/chapters",
-      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/images/logo.png", "sizes": "512x512" }]
     },
     {
       "name": "Chapter 1",
       "short_name": "Ch. 1",
       "description": "Arjuna's Dilemma",
       "url": "/chapters/1",
-      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/images/logo.png", "sizes": "512x512" }]
     },
     {
       "name": "Chapter 2",
       "short_name": "Ch. 2",
       "description": "The Yoga of Knowledge",
       "url": "/chapters/2",
-      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/images/logo.png", "sizes": "512x512" }]
     }
   ]
 }

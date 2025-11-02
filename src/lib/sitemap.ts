@@ -59,24 +59,16 @@ export function generateAllRoutes(): SiteRoute[] {
   // Static pages
   routes.push({
     url: `${baseUrl}/about`,
-    title: 'About - Bhagavad Gita Wisdom',
-    description: 'Learn about our mission to share the timeless wisdom of the Bhagavad Gita',
+    title: 'About This Project - Bhagavad Gita Wisdom',
+    description: 'Discover the story behind this solo project and how it brings the Bhagavad Gita to life online',
     priority: 0.6,
     changefreq: 'monthly'
   });
 
   routes.push({
     url: `${baseUrl}/donate`,
-    title: 'Support Our Mission - Donate',
+    title: 'Support This Work - Donate',
     description: 'Support the preservation and sharing of Bhagavad Gita wisdom',
-    priority: 0.5,
-    changefreq: 'monthly'
-  });
-
-  routes.push({
-    url: `${baseUrl}/contact`,
-    title: 'Contact Us - Bhagavad Gita',
-    description: 'Get in touch with our team for questions about the Bhagavad Gita',
     priority: 0.5,
     changefreq: 'monthly'
   });

@@ -1,6 +1,9 @@
 'use client';
 
 import { useEffect } from 'react';
+import { SITE_BASE_URL } from '@/lib/utils';
+
+const LOGO_URL = `${SITE_BASE_URL}/images/logo.png`;
 
 interface StructuredDataProps {
   data: Record<string, unknown>;
@@ -28,7 +31,7 @@ export function StructuredData({ data }: StructuredDataProps) {
 /**
  * Generate WebSite structured data
  */
-export function generateWebsiteSchema(url: string = 'https://bhagavad-gita.org') {
+export function generateWebsiteSchema(url: string = SITE_BASE_URL) {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -82,7 +85,7 @@ export function generateVerseArticleSchema({
       name: 'Bhagavad Gita Wisdom',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://bhagavad-gita.org/favicon.jpg',
+        url: LOGO_URL,
       },
     },
     datePublished: datePublished || new Date().toISOString(),

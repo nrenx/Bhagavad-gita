@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Book, Heart, Users, Globe, Award, Target, Lightbulb } from 'lucide-react';
+import { Book, Heart, Users, Globe, Award, Target, Lightbulb, Mail, Phone, MessageCircle, ExternalLink } from 'lucide-react';
 
 export function AboutContent() {
 
@@ -21,7 +21,7 @@ export function AboutContent() {
     {
       icon: Users,
       title: 'Community Driven',
-      description: 'Built with feedback from scholars, students, and spiritual seekers'
+      description: 'Open to feedback from scholars, students, and spiritual seekers worldwide'
     },
     {
       icon: Award,
@@ -55,7 +55,7 @@ export function AboutContent() {
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-white/70 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
             <Badge variant="outline" className="bg-orange-100 text-orange-700 border-orange-200">
-              About Us
+              About This Project
             </Badge>
           </div>
           
@@ -67,7 +67,7 @@ export function AboutContent() {
           </h1>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            We're dedicated to making the timeless teachings of the Bhagavad Gita accessible to everyone 
+            A solo project dedicated to making the timeless teachings of the Bhagavad Gita accessible to everyone 
             through beautiful design, authentic translations, and comprehensive educational resources.
           </p>
         </div>
@@ -76,7 +76,7 @@ export function AboutContent() {
         <div className="mb-16">
           <Card className="bg-white/70 backdrop-blur-sm border-orange-200">
             <CardHeader className="text-center pb-6">
-              <CardTitle className="text-3xl font-bold text-gray-900 mb-4">Our Mission</CardTitle>
+              <CardTitle className="text-3xl font-bold text-gray-900 mb-4">My Mission</CardTitle>
               <p className="text-lg text-gray-600 max-w-4xl mx-auto">
                 To bridge the gap between ancient spiritual wisdom and modern digital accessibility, 
                 creating a comprehensive platform that honors the traditional teachings while embracing 
@@ -102,9 +102,9 @@ export function AboutContent() {
         {/* Goals Section */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Goals</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">My Goals</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Every feature we build serves these fundamental principles
+              Every feature I build serves these fundamental principles
             </p>
           </div>
           
@@ -125,6 +125,225 @@ export function AboutContent() {
               </Card>
             ))}
           </div>
+        </div>
+
+        {/* Creator's Journey Section */}
+        <div className="mb-16">
+          <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200">
+            <CardHeader>
+              <CardTitle className="text-3xl font-bold text-gray-900 text-center mb-6">
+                The Journey Behind This Project
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="max-w-4xl mx-auto space-y-6 text-gray-700">
+                <p className="text-lg leading-relaxed">
+                  As a solo developer and creator, I envisioned a platform that would truly serve anyone 
+                  who sincerely wishes to read, understand, and experience the Bhagavad Gita. This website 
+                  is the culmination of that vision — a complete digital sanctuary dedicated to this timeless scripture.
+                </p>
+
+                <div className="bg-white/60 backdrop-blur-sm rounded-lg p-6 border border-blue-100">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <Lightbulb className="w-6 h-6 mr-2 text-blue-600" />
+                    AI-Powered Development
+                  </h3>
+                  <p className="mb-4 leading-relaxed">
+                    This entire project — from collecting verses to creating videos — was developed using 
+                    AI technology combined with extensive research. The process included:
+                  </p>
+                  <ul className="space-y-2 ml-4">
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Gathering authentic verse collections from traditional sources
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Generating comprehensive scripts for each of the 700+ verses
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Producing high-quality audio narrations
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Creating complete video content for every single verse
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-white/60 backdrop-blur-sm rounded-lg p-6 border border-blue-100">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <Globe className="w-6 h-6 mr-2 text-blue-600" />
+                    Accessibility & Reach
+                  </h3>
+                  <p className="leading-relaxed">
+                    All verse videos have been uploaded as YouTube Shorts and are embedded directly on 
+                    this website, enabling visitors to both read and listen to each verse seamlessly. 
+                    With multi-language support, people from diverse backgrounds can freely access and 
+                    connect with the Bhagavad Gita in their preferred language.
+                  </p>
+                </div>
+
+                <div className="bg-white/60 backdrop-blur-sm rounded-lg p-6 border border-blue-100">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <Users className="w-6 h-6 mr-2 text-blue-600" />
+                    A Student's Dedication
+                  </h3>
+                  <p className="leading-relaxed">
+                    As a B.Tech student without advanced programming expertise or professional tools, 
+                    I embarked on this journey with determination and curiosity. Through AI assistance 
+                    and continuous learning, I transformed this vision into reality — from website 
+                    development to complete video production.
+                  </p>
+                </div>
+
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
+                    <Heart className="w-6 h-6 mr-2 text-amber-600" />
+                    Your Feedback Matters
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    While AI is powerful, it can occasionally make minor errors. I encourage you to 
+                    report any issues or suggest improvements you discover. Your contributions help 
+                    make this resource better for everyone. You can contribute through my{' '}
+                    <a 
+                      href="https://github.com/nrenx/Bhagvad-gita-website" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-orange-600 hover:text-orange-700 font-medium underline"
+                    >
+                      GitHub repository
+                    </a>
+                    {' '}or reach me through the Connect With Our Community section below.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Community & Contact Section */}
+        <div id="connect" className="mb-16 scroll-mt-24">
+          <Card className="bg-white/80 backdrop-blur-sm border-blue-200 shadow-sm">
+            <CardHeader className="text-center pb-6">
+              <CardTitle className="text-3xl font-bold text-gray-900 mb-4">
+                Connect With Our Community
+              </CardTitle>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                I'm building this project in the open so seekers around the world can learn together. 
+                Reach out, collaborate, or simply share how the Bhagavad Gita has touched your life.
+              </p>
+            </CardHeader>
+            <CardContent>
+              <div className="grid lg:grid-cols-[1.2fr,0.8fr] gap-10">
+                <div className="space-y-6 text-gray-700">
+                  <p className="leading-relaxed">
+                    I welcome thoughtful discussions, translations, bug reports, and real-world stories 
+                    from fellow practitioners. Every message helps refine this platform and keep it grounded 
+                    in the needs of the community.
+                  </p>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Share how you're studying the Gita or suggest resources that helped you
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Collaborate on improving translations, pronunciations, or commentary
+                    </li>
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      Report typos, broken media, or accessibility issues so I can fix them quickly
+                    </li>
+                  </ul>
+
+                  <div className="rounded-2xl border border-blue-100 bg-white/70 p-6 shadow-sm">
+                    <div className="flex items-center space-x-3 mb-3">
+                      <Users className="w-6 h-6 text-blue-600" />
+                      <h3 className="text-lg font-semibold text-gray-900">Contribute on GitHub</h3>
+                    </div>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Submit pull requests, open issues, or explore how everything fits together behind the scenes.
+                    </p>
+                    <Button size="sm" className="bg-blue-600 hover:bg-blue-700" asChild>
+                      <a
+                        href="https://github.com/nrenx/Bhagvad-gita-website"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Visit Repository
+                        <ExternalLink className="w-4 h-4 ml-2" aria-hidden="true" />
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  <div className="rounded-2xl border border-blue-100 bg-white/75 p-6 shadow-sm">
+                    <div className="flex items-center space-x-3 mb-3">
+                      <Mail className="w-6 h-6 text-blue-600" />
+                      <h3 className="text-lg font-semibold text-gray-900">Email</h3>
+                    </div>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Send detailed feedback, share research, or request new features and resources.
+                    </p>
+                    <a
+                      href="mailto:narendrabollineni2002@gmail.com"
+                      className="block font-semibold text-blue-700 break-words"
+                    >
+                      narendrabollineni2002@gmail.com
+                    </a>
+                    <div className="mt-4">
+                      <Button size="sm" className="bg-blue-600 hover:bg-blue-700" asChild>
+                        <a href="mailto:narendrabollineni2002@gmail.com">
+                          Send an Email
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl border border-green-100 bg-white/75 p-6 shadow-sm">
+                    <div className="flex items-center space-x-3 mb-3">
+                      <Phone className="w-6 h-6 text-green-600" />
+                      <h3 className="text-lg font-semibold text-gray-900">Phone & WhatsApp</h3>
+                    </div>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Call or message for quick questions. The same number works for WhatsApp too.
+                    </p>
+                    <a
+                      href="tel:+917989976214"
+                      className="block font-semibold text-green-700"
+                    >
+                      +91 79899 76214
+                    </a>
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      <Button size="sm" className="bg-green-600 hover:bg-green-700" asChild>
+                        <a href="tel:+917989976214">
+                          Call Now
+                        </a>
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="border-green-200 hover:bg-green-50 text-green-700"
+                        asChild
+                      >
+                        <a
+                          href="https://wa.me/917989976214"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <MessageCircle className="w-4 h-4 mr-2" aria-hidden="true" />
+                          WhatsApp
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* About the Bhagavad Gita Section */}
@@ -173,7 +392,7 @@ export function AboutContent() {
           <Card className="bg-white/70 backdrop-blur-sm border-orange-200">
             <CardHeader>
               <CardTitle className="text-3xl font-bold text-gray-900 text-center mb-6">
-                Our Approach
+                My Approach
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -234,7 +453,7 @@ export function AboutContent() {
               </h2>
               <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
                 Start exploring the timeless wisdom of the Bhagavad Gita. Whether you're new to the 
-                text or a longtime student, our platform offers resources for every level of understanding.
+                text or a longtime student, this platform offers resources for every level of understanding.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
@@ -253,9 +472,10 @@ export function AboutContent() {
                   className="border-orange-200 hover:bg-orange-50"
                   asChild
                 >
-                  <Link href="/contact">
-                    Contact Us
-                  </Link>
+                  <a href="mailto:narendrabollineni2002@gmail.com" className="inline-flex items-center">
+                    <Mail className="w-5 h-5 mr-2" />
+                    Email Me
+                  </a>
                 </Button>
               </div>
             </CardContent>

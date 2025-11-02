@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { getChapterInfo, verseExists } from '@/lib/data';
+import { getAssetUrl, getRouteUrl, SITE_BASE_URL } from '@/lib/utils';
 
 interface SEOProps {
   title?: string;
@@ -14,9 +15,12 @@ interface SEOProps {
   section?: string;
 }
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://bhagavad-gita.org';
+const BASE_URL = SITE_BASE_URL || 'https://bhagavad-gita.org';
 const SITE_NAME = 'Bhagavad Gita Wisdom';
-const DEFAULT_IMAGE = '/favicon.jpg';
+const DEFAULT_IMAGE = '/images/bhagavad-image.png';
+const LOGO_IMAGE = '/images/logo.png';
+const METADATA_BASE_URL = getRouteUrl('/');
+const PUBLISHER_LOGO_URL = getAssetUrl(LOGO_IMAGE);
 
 /**
  * Generate base metadata for all pages
@@ -36,8 +40,8 @@ export function generateBaseMetadata(props: SEOProps = {}): Metadata {
   } = props;
 
   const fullTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
-  const fullUrl = url.startsWith('http') ? url : `${BASE_URL}${url}`;
-  const fullImageUrl = image.startsWith('http') ? image : `${BASE_URL}${image}`;
+  const fullUrl = getRouteUrl(url);
+  const fullImageUrl = image.startsWith('http') ? image : getAssetUrl(image);
 
   const baseKeywords = [
     'Bhagavad Gita',
@@ -70,9 +74,9 @@ export function generateBaseMetadata(props: SEOProps = {}): Metadata {
       address: false,
       telephone: false,
     },
-    metadataBase: new URL(BASE_URL),
+    metadataBase: new URL(METADATA_BASE_URL),
     alternates: {
-      canonical: url,
+      canonical: fullUrl,
     },
     openGraph: {
       type,
@@ -252,16 +256,16 @@ export function generateVerseMetadata(
  */
 export function generateAboutMetadata(): Metadata {
   return generateBaseMetadata({
-    title: 'About - Bhagavad Gita Wisdom',
-    description: 'Learn about our mission to preserve and share the timeless wisdom of the Bhagavad Gita. Discover how we make this sacred text accessible to seekers worldwide through modern technology and traditional understanding.',
+    title: 'About This Project - Bhagavad Gita Wisdom',
+    description: 'Explore how this solo project combines authentic Bhagavad Gita research, AI-assisted production, and community feedback to make every verse accessible.',
     keywords: [
-      'about us',
-      'mission',
-      'spiritual education',
-      'preserve wisdom',
-      'traditional understanding',
-      'modern accessibility',
-      'seekers worldwide'
+      'about this project',
+      'solo developer',
+      'bhagavad gita project',
+      'ai assisted development',
+      'spiritual technology',
+      'open source gita',
+      'community feedback'
     ],
     url: '/about',
     type: 'website'
@@ -273,39 +277,19 @@ export function generateAboutMetadata(): Metadata {
  */
 export function generateDonateMetadata(): Metadata {
   return generateBaseMetadata({
-    title: 'Support Our Mission - Donate',
-    description: 'Support the preservation and sharing of Bhagavad Gita wisdom. Your donation helps us maintain this free resource and create more spiritual content for seekers worldwide.',
+    title: 'Support This Work - Donate',
+    description: 'Help sustain this independent Bhagavad Gita project. Your support keeps the verse archive, videos, and learning tools freely available for everyone.',
     keywords: [
       'donate',
-      'support mission',
+      'support project',
       'preserve wisdom',
       'spiritual content',
       'free resource',
-      'charity',
-      'spiritual education'
+      'independent creator',
+      'spiritual education',
+      'bhagavad gita support'
     ],
     url: '/donate',
-    type: 'website'
-  });
-}
-
-/**
- * Generate metadata for contact page
- */
-export function generateContactMetadata(): Metadata {
-  return generateBaseMetadata({
-    title: 'Contact Us - Bhagavad Gita',
-    description: 'Get in touch with our team for questions about the Bhagavad Gita, feedback on our website, or collaboration opportunities. We love hearing from fellow spiritual seekers.',
-    keywords: [
-      'contact us',
-      'get in touch',
-      'questions',
-      'feedback',
-      'collaboration',
-      'spiritual seekers',
-      'support'
-    ],
-    url: '/contact',
     type: 'website'
   });
 }
@@ -340,7 +324,7 @@ export function generateVerseStructuredData(
       name: SITE_NAME,
       logo: {
         '@type': 'ImageObject',
-        url: `${BASE_URL}/favicon.jpg`
+        url: PUBLISHER_LOGO_URL
       }
     },
     mainEntity: {
@@ -357,7 +341,7 @@ export function generateVerseStructuredData(
         }
       }
     },
-    url: `${BASE_URL}/chapters/${chapterNumber}/verse/${verseNumber}`,
+  url: getRouteUrl(`/chapters/${chapterNumber}/verse/${verseNumber}`),
     datePublished: '2024-01-01',
     dateModified: new Date().toISOString(),
     isPartOf: {
@@ -382,7 +366,7 @@ export function generateBreadcrumbStructuredData(items: Array<{ name: string; ur
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: item.url.startsWith('http') ? item.url : `${BASE_URL}${item.url}`
+      item: item.url.startsWith('http') ? item.url : getRouteUrl(item.url)
     }))
   };
 }
