@@ -77,33 +77,6 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
   const hasNextChapter = chapterNumber < 18;
   const hasPrevChapter = chapterNumber > 1;
 
-  // Get chapter-specific content and themes
-  const getChapterThemes = (chapter: number): string[] => {
-    const themes: { [key: number]: string[] } = {
-      1: ['Moral Crisis', 'Duty vs Emotion', 'Warrior Ethics', 'Spiritual Confusion'],
-      2: ['Eternal Soul', 'Detachment', 'Karma Yoga', 'Equanimity'],
-      3: ['Selfless Action', 'Duty (Dharma)', 'Social Responsibility', 'Sacrifice'],
-      4: ['Divine Incarnation', 'Knowledge & Action', 'Spiritual Sacrifice', 'Ancient Wisdom'],
-      5: ['Renunciation', 'Action in Inaction', 'Mental Purification', 'True Freedom'],
-      6: ['Meditation', 'Mind Control', 'Spiritual Practice', 'Self-Realization'],
-      7: ['Divine Knowledge', 'Devotion', 'Maya (Illusion)', 'Surrender'],
-      8: ['Death & Afterlife', 'Cosmic Cycles', 'Supreme Absolute', 'Final Thought'],
-      9: ['Sovereign Secret', 'Divine Grace', 'Universal Form', 'Easy Path'],
-      10: ['Divine Manifestations', 'Cosmic Glory', 'Infinite Presence', 'Divine Attributes'],
-      11: ['Universal Form', 'Cosmic Vision', 'Divine Terror & Beauty', 'Cosmic Time'],
-      12: ['Pure Devotion', 'Qualities of Devotee', 'Paths to God', 'Divine Love'],
-      13: ['Body & Soul', 'Knower & Known', 'Consciousness', 'Transcendence'],
-      14: ['Three Gunas', 'Nature\'s Modes', 'Transcending Qualities', 'Liberation'],
-      15: ['Tree of Existence', 'Supreme Person', 'Cosmic Reality', 'Ultimate Goal'],
-      16: ['Divine & Demonic', 'Moral Qualities', 'Spiritual Destiny', 'Character Types'],
-      17: ['Three Faiths', 'Worship Types', 'Food & Character', 'Austerity & Charity'],
-      18: ['Complete Surrender', 'Final Teaching', 'Liberation Path', 'Divine Secret']
-    };
-    return themes[chapter] || [];
-  };
-
-  const themes = getChapterThemes(chapterNumber);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50">
       <main>
@@ -130,12 +103,6 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
           <div className="absolute inset-0 bg-gradient-to-br from-orange-100/50 via-red-50/30 to-pink-100/50" />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="mb-8 flex justify-center">
-                <div className="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-600 rounded-full flex items-center justify-center text-white text-3xl font-bold shadow-2xl">
-                  {chapterNumber}
-                </div>
-              </div>
-              
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 <span className="text-slate-800">Chapter {chapterNumber}</span>
                 <br />
@@ -183,70 +150,44 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
           </div>
         </section>
 
-        {/* Chapter Themes */}
-        {themes.length > 0 && (
-          <section className="py-12 bg-white">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="max-w-4xl mx-auto">
-                <h2 className="text-2xl lg:text-3xl font-bold text-slate-800 mb-6 text-center">
-                  Key Themes & Teachings
-                </h2>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {themes.map((theme, index) => (
-                    <div
-                      key={index}
-                      className="bg-gradient-to-br from-orange-50 to-red-50 rounded-lg p-4 text-center border border-orange-100"
-                    >
-                      <p className="text-sm font-medium text-slate-700">{theme}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
         {/* Verses List */}
-        <section id="verses-list" className="py-16 bg-gradient-to-br from-slate-50 to-orange-50">
+        <section id="verses-list" className="py-8 sm:py-16 bg-gradient-to-br from-slate-50 to-orange-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl lg:text-4xl font-bold text-slate-800 mb-4">
+              <div className="text-center mb-8 sm:mb-12">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-800 mb-2 sm:mb-4">
                   All Verses in Chapter {chapterNumber}
                 </h2>
-                <p className="text-lg text-slate-600">
+                <p className="text-sm sm:text-base lg:text-lg text-slate-600">
                   Click on any verse to read the complete Sanskrit text, English translation, and commentary
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3 lg:gap-4">
                 {verseNumbers.map((verseNumber) => (
-                  <Card
+                  <Link 
                     key={verseNumber}
-                    className="group hover:shadow-xl transition-all duration-300 hover:scale-105 border-0 bg-white shadow-md cursor-pointer"
+                    href={`/chapters/${chapterNumber}/verse/${verseNumber}`}
+                    className="group"
                   >
-                    <Link href={`/chapters/${chapterNumber}/verse/${verseNumber}`}>
-                      <CardHeader className="pb-3">
-                        <CardTitle className="text-center">
-                          <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-2 group-hover:shadow-lg transition-shadow">
-                            {verseNumber}
-                          </div>
-                          <p className="text-lg font-bold text-slate-800 group-hover:text-orange-600 transition-colors">
-                            Verse {verseNumber}
-                          </p>
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="pt-0 text-center">
-                        <p className="text-sm text-slate-600 mb-3">
-                          Chapter {chapterNumber}.{verseNumber}
+                    <Card className="hover:shadow-xl transition-all duration-300 hover:scale-105 border border-slate-200 hover:border-orange-300 bg-white cursor-pointer h-full">
+                      <CardContent className="p-2 sm:p-3 flex flex-col items-center justify-center text-center">
+                        <div className="w-7 h-7 sm:w-9 sm:h-9 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-xs sm:text-sm mb-1 sm:mb-1.5 group-hover:shadow-lg transition-shadow">
+                          {verseNumber}
+                        </div>
+                        <p className="text-[10px] sm:text-xs font-bold text-slate-800 group-hover:text-orange-600 transition-colors mb-0.5">
+                          Verse {verseNumber}
                         </p>
-                        <div className="flex items-center justify-center text-orange-500 group-hover:text-orange-600 transition-colors">
-                          <span className="text-sm font-medium">Read Verse</span>
-                          <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        <p className="text-[9px] sm:text-[10px] text-slate-500 mb-0.5 sm:mb-1">
+                          {chapterNumber}.{verseNumber}
+                        </p>
+                        <div className="flex items-center text-orange-500 group-hover:text-orange-600 transition-colors">
+                          <span className="text-[9px] sm:text-[10px] font-medium">Read</span>
+                          <ArrowRight className="ml-0.5 h-2 w-2 sm:h-2.5 sm:w-2.5 group-hover:translate-x-0.5 transition-transform" />
                         </div>
                       </CardContent>
-                    </Link>
-                  </Card>
+                    </Card>
+                  </Link>
                 ))}
               </div>
             </div>

@@ -8,7 +8,6 @@ import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { VerseDisplay } from '@/components/verse/VerseDisplay'
 import { VideoPlayer } from '@/components/verse/VideoPlayer'
-import { QuickActions } from '@/components/verse/QuickActions'
 import { getAllVerseKeys, getChapterInfo, getAdjacentVerses } from '@/lib/data'
 import { getVerseDataFromFiles } from '@/lib/verse-data'
 import {
@@ -121,25 +120,6 @@ export default async function VersePage({ params }: VersePageProps) {
   const defaultVideoLanguage = resolveDefaultVideoLanguage(verseVideos)
   const hasVideos = Object.keys(verseVideos).length > 0
 
-  // Extract key themes/concepts from the verse
-  const extractKeyThemes = (text: string): string[] => {
-    const themes = []
-    const lowerText = text.toLowerCase()
-    
-    if (lowerText.includes('dharma') || lowerText.includes('duty') || lowerText.includes('righteous')) themes.push('Dharma')
-    if (lowerText.includes('karma') || lowerText.includes('action') || lowerText.includes('work')) themes.push('Karma')
-    if (lowerText.includes('yoga') || lowerText.includes('union') || lowerText.includes('discipline')) themes.push('Yoga')
-    if (lowerText.includes('devotion') || lowerText.includes('bhakti') || lowerText.includes('worship')) themes.push('Bhakti')
-    if (lowerText.includes('knowledge') || lowerText.includes('wisdom') || lowerText.includes('jnana')) themes.push('Jnana')
-    if (lowerText.includes('detachment') || lowerText.includes('renunciation')) themes.push('Detachment')
-    if (lowerText.includes('soul') || lowerText.includes('atman') || lowerText.includes('self')) themes.push('Soul')
-    if (lowerText.includes('krishna') || lowerText.includes('divine') || lowerText.includes('god')) themes.push('Divine')
-    
-    return themes.length > 0 ? themes : ['Spiritual Wisdom']
-  }
-
-  const verseThemes = extractKeyThemes(verseData.english)
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
       <div className="container mx-auto px-4 py-8">
@@ -165,39 +145,6 @@ export default async function VersePage({ params }: VersePageProps) {
           <span className="text-orange-600 font-medium">Verse {verseNum}</span>
         </nav>
 
-        {/* Verse Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center space-x-2 bg-white/70 backdrop-blur-sm rounded-full px-6 py-2 mb-4">
-            <Badge variant="outline" className="bg-orange-100 text-orange-700 border-orange-200">
-              Chapter {chapterNum}
-            </Badge>
-            <Separator orientation="vertical" className="h-4" />
-            <Badge variant="outline" className="bg-amber-100 text-amber-700 border-amber-200">
-              Verse {verseNum}
-            </Badge>
-          </div>
-          
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            {chapterInfo.title}
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Verse {verseNum} of {chapterInfo.verses} - {chapterInfo.meaning}
-          </p>
-        </div>
-
-        {/* Key Themes */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {verseThemes.map((theme, index) => (
-            <Badge 
-              key={index}
-              variant="secondary" 
-              className="bg-gradient-to-r from-orange-100 to-amber-100 text-orange-800 border-orange-200"
-            >
-              {theme}
-            </Badge>
-          ))}
-        </div>
-
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Verse Content */}
           <div className="space-y-6">
@@ -205,13 +152,6 @@ export default async function VersePage({ params }: VersePageProps) {
               chapter={chapterNum}
               verse={verseNum}
               content={verseData}
-            />
-            
-            {/* Quick Actions */}
-            <QuickActions 
-              verseData={verseData}
-              chapterNum={chapterNum}
-              verseNum={verseNum}
             />
           </div>
 

@@ -34,6 +34,8 @@ export function HomeContent() {
           backgroundSpeed={0.6} 
           midgroundSpeed={0.4}
           className="py-20 lg:py-32"
+          backgroundImageSrc="/images/bhagavad-image.png"
+          backgroundImageAlt="Lord Krishna guiding Arjuna"
         >
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-4xl mx-auto">
