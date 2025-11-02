@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 interface AnimatedSectionProps {
@@ -24,12 +25,36 @@ export function ParallaxElement({ children }: { children: React.ReactNode; speed
   return <div>{children}</div>;
 }
 
-export function ParallaxHero({ children, className = '' }: { children: React.ReactNode; backgroundSpeed?: number; midgroundSpeed?: number; className?: string }) {
+interface ParallaxHeroProps {
+  children: React.ReactNode;
+  className?: string;
+  backgroundImageSrc?: string;
+  backgroundImageAlt?: string;
+  backgroundSpeed?: number;
+  midgroundSpeed?: number;
+}
+
+export function ParallaxHero({
+  children,
+  className = '',
+  backgroundImageSrc,
+  backgroundImageAlt = 'Decorative background',
+}: ParallaxHeroProps) {
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <div className={cn('relative overflow-hidden', className)}>
+      {backgroundImageSrc ? (
+        <Image
+          src={backgroundImageSrc}
+          alt={backgroundImageAlt}
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      ) : null}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-100/70 via-red-50/50 to-pink-100/70" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-orange-50/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-100/80 via-red-50/60 to-pink-100/80" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-slate-900/40 via-slate-900/20 to-transparent" />
       </div>
       <div className="relative z-10">
         {children}
