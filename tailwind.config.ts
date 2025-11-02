@@ -65,30 +65,6 @@ const config: Config = {
 				'divine-gradient': 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
 				'cosmic-gradient': 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
 			},
-			animation: {
-				'fade-in': 'fadeIn 0.8s ease-in-out',
-				'slide-up': 'slideUp 0.8s ease-out',
-				'float': 'float 3s ease-in-out infinite',
-				'glow': 'glow 2s ease-in-out infinite alternate',
-			},
-			keyframes: {
-				fadeIn: {
-					'0%': { opacity: '0', transform: 'translateY(20px)' },
-					'100%': { opacity: '1', transform: 'translateY(0)' },
-				},
-				slideUp: {
-					'0%': { transform: 'translateY(100px)', opacity: '0' },
-					'100%': { transform: 'translateY(0)', opacity: '1' },
-				},
-				float: {
-					'0%, 100%': { transform: 'translateY(0px)' },
-					'50%': { transform: 'translateY(-10px)' },
-				},
-				glow: {
-					'0%': { boxShadow: '0 0 5px rgba(255, 255, 255, 0.5)' },
-					'100%': { boxShadow: '0 0 20px rgba(255, 255, 255, 0.8)' },
-				},
-			},
 			fontFamily: {
 				'sanskrit': ['Noto Sans Devanagari', 'serif'],
 				'heading': ['Inter', 'sans-serif'],
