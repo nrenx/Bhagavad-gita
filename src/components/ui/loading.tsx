@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -20,13 +19,9 @@ export function LoadingSpinner({ size = 'md', className }: LoadingSpinnerProps) 
   };
 
   return (
-    <motion.div
-      animate={{ rotate: 360 }}
-      transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-      className={cn(sizeClasses[size], className)}
-    >
+    <div className={cn('animate-spin', sizeClasses[size], className)}>
       <Loader2 className="w-full h-full text-orange-500" />
-    </motion.div>
+    </div>
   );
 }
 
@@ -37,20 +32,9 @@ export function PageLoader() {
   return (
     <div className="fixed inset-0 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 flex items-center justify-center z-50">
       <div className="text-center">
-        <motion.div
-          className="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-600 rounded-full flex items-center justify-center text-white text-3xl font-bold shadow-2xl mx-auto mb-4"
-          animate={{
-            scale: [1, 1.1, 1],
-            rotate: [0, 360],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        >
+        <div className="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-600 rounded-full flex items-center justify-center text-white text-3xl font-bold shadow-2xl mx-auto mb-4 animate-pulse">
           ॐ
-        </motion.div>
+        </div>
         <p className="text-slate-600 font-medium">Loading sacred wisdom...</p>
       </div>
     </div>
