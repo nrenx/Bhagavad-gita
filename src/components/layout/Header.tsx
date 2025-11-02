@@ -2,10 +2,14 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from '@/components/ui/navigation-menu';
-import { Menu, X, Home, Book, Heart, Phone } from 'lucide-react';
+import { Menu, X, Home, Book, Heart } from 'lucide-react';
+import { getAssetPath } from '@/lib/utils';
+
+const logoSrc = getAssetPath('/images/logo.png');
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,12 +36,15 @@ export function Header() {
             className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
             aria-label="Return to homepage - Bhagavad Gita"
           >
-            <div 
-              className="w-8 h-8 bg-gradient-to-br from-orange-400 to-red-600 rounded-lg flex items-center justify-center text-white font-bold text-sm"
-              aria-hidden="true"
-            >
-              ॐ
-            </div>
+            <Image
+              src={logoSrc}
+              alt="Bhagavad Gita emblem"
+              width={36}
+              height={36}
+              priority
+              unoptimized
+              className="rounded-lg shadow-sm"
+            />
             <span className="text-xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
               Bhagavad Gita
             </span>
@@ -59,7 +66,7 @@ export function Header() {
                   Home
                 </Link>
               </NavigationMenuItem>
-              
+
               <NavigationMenuItem>
                 <Link 
                   href="/chapters"
@@ -98,19 +105,6 @@ export function Header() {
                 >
                   <Heart className="mr-2 h-4 w-4" aria-hidden="true" />
                   Donate
-                </Link>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <Link 
-                  href="/contact"
-                  className={`group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-slate-100 hover:text-slate-900 focus:bg-slate-100 focus:text-slate-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 ${
-                    isActivePath('/contact') ? 'bg-slate-100/50' : 'bg-white'
-                  }`}
-                  aria-label="Navigate to contact page"
-                  aria-current={isActivePath('/contact') ? 'page' : undefined}
-                >
-                  Contact
                 </Link>
               </NavigationMenuItem>
             </NavigationMenuList>
@@ -185,18 +179,6 @@ export function Header() {
               >
                 <Heart className="inline mr-2 h-4 w-4" aria-hidden="true" />
                 Donate
-              </Link>
-              <Link
-                href="/contact"
-                onClick={() => setIsMenuOpen(false)}
-                className={`block w-full text-left px-3 py-2 text-base font-medium rounded-md transition-colors ${
-                  isActivePath('/contact') ? 'bg-slate-100 text-slate-900' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
-                }`}
-                aria-label="Navigate to contact page"
-                aria-current={isActivePath('/contact') ? 'page' : undefined}
-              >
-                <Phone className="inline mr-2 h-4 w-4" aria-hidden="true" />
-                Contact
               </Link>
             </div>
           </nav>

@@ -2,9 +2,13 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Instagram, Youtube, Facebook, Heart, Mail, ExternalLink } from 'lucide-react';
+import Image from 'next/image';
+import { Instagram, Youtube, Facebook, Heart, Users, ExternalLink } from 'lucide-react';
 import { SOCIAL_MEDIA_LINKS } from '@/lib/content-utils';
 import { Button } from '@/components/ui/button';
+import { getAssetPath } from '@/lib/utils';
+
+const logoSrc = getAssetPath('/images/logo.png');
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -20,12 +24,15 @@ export function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-              <div 
-                className="w-10 h-10 bg-gradient-to-br from-orange-400 to-red-600 rounded-lg flex items-center justify-center text-white font-bold"
-                aria-hidden="true"
-              >
-                ॐ
-              </div>
+              <Image
+                src={logoSrc}
+                alt="Bhagavad Gita emblem"
+                width={40}
+                height={40}
+                className="rounded-lg shadow-sm"
+                priority
+                unoptimized
+              />
               <span className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
                 Bhagavad Gita
               </span>
@@ -88,9 +95,9 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-slate-300 hover:text-orange-300 transition-colors flex items-center">
-                  <Mail className="h-4 w-4 mr-1" />
-                  Contact
+                <Link href="/about#connect" className="text-slate-300 hover:text-orange-300 transition-colors flex items-center">
+                  <Users className="h-4 w-4 mr-1" />
+                  Community
                 </Link>
               </li>
             </ul>

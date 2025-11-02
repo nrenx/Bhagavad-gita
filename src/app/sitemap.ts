@@ -29,12 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
     {
-      url: `${baseUrl}/contact`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'monthly' as const,
-      priority: 0.5,
-    },
-    {
       url: `${baseUrl}/donate`,
       lastModified: LAST_MODIFIED,
       changeFrequency: 'monthly' as const,

@@ -48,6 +48,7 @@ export function ParallaxHero({
           alt={backgroundImageAlt}
           fill
           priority
+          unoptimized
           sizes="100vw"
           className="absolute inset-0 h-full w-full object-cover"
         />
