@@ -177,58 +177,6 @@ export default async function VersePage({ params }: VersePageProps) {
               </CardContent>
             </Card>
 
-            {/* Verse Navigation */}
-            <Card className="bg-white/70 backdrop-blur-sm border-orange-200">
-              <CardHeader>
-                <CardTitle>Navigate Verses</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {/* Previous Verse */}
-                {previousVerse && (
-                  <Link 
-                    href={`/chapters/${previousVerse.chapter}/verse/${previousVerse.verse}`}
-                    className="block"
-                  >
-                    <Button variant="outline" className="w-full justify-between group">
-                      <div className="flex items-center">
-                        <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-                        Previous Verse
-                      </div>
-                      <div className="text-sm text-gray-500">
-                        {previousVerse.chapter}:{previousVerse.verse}
-                      </div>
-                    </Button>
-                  </Link>
-                )}
-
-                {/* Chapter Overview */}
-                <Link href={`/chapters/${chapterNum}`}>
-                  <Button variant="outline" className="w-full">
-                    <Book className="w-4 h-4 mr-2" />
-                    Chapter {chapterNum} Overview
-                  </Button>
-                </Link>
-
-                {/* Next Verse */}
-                {nextVerse && (
-                  <Link 
-                    href={`/chapters/${nextVerse.chapter}/verse/${nextVerse.verse}`}
-                    className="block"
-                  >
-                    <Button variant="outline" className="w-full justify-between group">
-                      <div className="flex items-center">
-                        <ArrowRight className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" />
-                        Next Verse
-                      </div>
-                      <div className="text-sm text-gray-500">
-                        {nextVerse.chapter}:{nextVerse.verse}
-                      </div>
-                    </Button>
-                  </Link>
-                )}
-              </CardContent>
-            </Card>
-
             {/* Chapter Context */}
             <Card className="bg-white/70 backdrop-blur-sm border-orange-200">
               <CardHeader>

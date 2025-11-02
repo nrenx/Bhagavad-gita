@@ -81,16 +81,18 @@ export function VideoPlayer({
             })}
           </div>
 
-          <div className="aspect-video overflow-hidden rounded-lg border border-orange-200 bg-black">
-            <iframe
-              key={currentVideo.videoId}
-              src={`https://www.youtube.com/embed/${currentVideo.videoId}?autoplay=0&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playsinline=1`}
-              className="h-full w-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-              allowFullScreen
-              loading="lazy"
-              title={currentVideo.title}
-            />
+          <div className="relative w-full max-w-sm mx-auto" style={{ aspectRatio: '9/16' }}>
+            <div className="overflow-hidden rounded-lg border border-orange-200 bg-black h-full">
+              <iframe
+                key={currentVideo.videoId}
+                src={`https://www.youtube.com/embed/${currentVideo.videoId}?autoplay=0&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playsinline=1`}
+                className="h-full w-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                allowFullScreen
+                loading="lazy"
+                title={currentVideo.title}
+              />
+            </div>
           </div>
 
           <div className="flex flex-wrap items-center justify-between gap-3">
@@ -104,15 +106,17 @@ export function VideoPlayer({
           </div>
         </>
       ) : (
-        <div className="aspect-video rounded-lg bg-gradient-to-br from-orange-100 to-amber-100 flex items-center justify-center">
-          <div className="text-center">
-            <Play className="w-12 h-12 mx-auto text-orange-600 mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Video Coming Soon
-            </h3>
-            <p className="text-gray-600">
-              Chapter {chapter}, Verse {verse} video commentary will be available soon.
-            </p>
+        <div className="relative w-full max-w-sm mx-auto" style={{ aspectRatio: '9/16' }}>
+          <div className="rounded-lg bg-gradient-to-br from-orange-100 to-amber-100 flex items-center justify-center h-full">
+            <div className="text-center p-4">
+              <Play className="w-12 h-12 mx-auto text-orange-600 mb-4" />
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Video Coming Soon
+              </h3>
+              <p className="text-gray-600">
+                Chapter {chapter}, Verse {verse} video commentary will be available soon.
+              </p>
+            </div>
           </div>
         </div>
       )}
