@@ -6,14 +6,23 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
+import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { VerseDisplay } from '@/components/verse/VerseDisplay'
-import { VideoPlayer } from '@/components/verse/VideoPlayer'
+import { LazyVideoPlayer } from '@/components/verse/LazyVideoPlayer'
+import { RelatedVerses, PopularVersesInChapter } from '@/components/verse/RelatedVerses'
 import { getAllVerseKeys, getChapterInfo, getAdjacentVerses } from '@/lib/data'
 import { getVerseDataFromFiles } from '@/lib/verse-data'
 import {
   getVerseVideoSources,
   resolveDefaultVideoLanguage,
 } from '@/lib/verse-videos'
+import { getRelatedVerses, getPopularVersesInChapter } from '@/lib/internal-links'
+import { StructuredData } from '@/components/seo/StructuredData'
+import { 
+  generateVerseArticleSchema, 
+  generateBreadcrumbSchema,
+  generateBookSchema 
+} from '@/lib/seo-structured-data'
 
 type VerseParams = {
   chapter: string
@@ -119,31 +128,47 @@ export default async function VersePage({ params }: VersePageProps) {
   const verseVideos = getVerseVideoSources(chapterNum, verseNum)
   const defaultVideoLanguage = resolveDefaultVideoLanguage(verseVideos)
   const hasVideos = Object.keys(verseVideos).length > 0
+  
+  // Get related content for internal linking
+  const relatedVerses = getRelatedVerses(chapterNum, verseNum)
+  const popularVerses = getPopularVersesInChapter(chapterNum, verseNum)
+
+  // Generate structured data for SEO
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Chapters', url: '/chapters' },
+    { name: `Chapter ${chapterNum}`, url: `/chapters/${chapterNum}` },
+    { name: `Verse ${verseNum}`, url: `/chapters/${chapterNum}/verse/${verseNum}` },
+  ])
+
+  const articleSchema = generateVerseArticleSchema(
+    chapterNum,
+    verseNum,
+    chapterInfo.title,
+    {
+      sanskrit: verseData.sanskrit,
+      english: verseData.english,
+      romanized: verseData.romanized,
+    }
+  )
+
+  const bookSchema = generateBookSchema()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
-      <div className="container mx-auto px-4 py-8">
+    <>
+      <StructuredData data={[breadcrumbSchema, articleSchema, bookSchema]} />
+      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
+        <div className="container mx-auto px-4 py-8">
         {/* Breadcrumb Navigation */}
-        <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
-          <Link href="/" className="hover:text-orange-600 transition-colors flex items-center">
-            <Home className="w-4 h-4 mr-1" />
-            Home
-          </Link>
-          <ChevronRight className="w-4 h-4" />
-          <Link href="/chapters" className="hover:text-orange-600 transition-colors flex items-center">
-            <Book className="w-4 h-4 mr-1" />
-            Chapters
-          </Link>
-          <ChevronRight className="w-4 h-4" />
-          <Link 
-            href={`/chapters/${chapterNum}`} 
-            className="hover:text-orange-600 transition-colors"
-          >
-            Chapter {chapterNum}
-          </Link>
-          <ChevronRight className="w-4 h-4" />
-          <span className="text-orange-600 font-medium">Verse {verseNum}</span>
-        </nav>
+        <Breadcrumb 
+          items={[
+            { label: 'Home', href: '/', icon: <Home className="w-4 h-4" /> },
+            { label: 'Chapters', href: '/chapters', icon: <Book className="w-4 h-4" /> },
+            { label: `Chapter ${chapterNum}`, href: `/chapters/${chapterNum}` },
+            { label: `Verse ${verseNum}`, href: `/chapters/${chapterNum}/verse/${verseNum}` },
+          ]}
+          className="mb-8"
+        />
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Verse Content */}
@@ -168,7 +193,7 @@ export default async function VersePage({ params }: VersePageProps) {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <VideoPlayer 
+                <LazyVideoPlayer 
                   chapter={chapterNum}
                   verse={verseNum}
                   videos={verseVideos}
@@ -205,9 +230,25 @@ export default async function VersePage({ params }: VersePageProps) {
                       style={{ width: `${(verseNum / chapterInfo.verses) * 100}%` }}
                     />
                   </div>
+                  
+                  {/* Popular verses in this chapter */}
+                  {popularVerses.length > 0 && (
+                    <>
+                      <Separator />
+                      <PopularVersesInChapter 
+                        chapter={chapterNum} 
+                        verses={popularVerses}
+                      />
+                    </>
+                  )}
                 </div>
               </CardContent>
             </Card>
+            
+            {/* Related Verses */}
+            {relatedVerses.length > 0 && (
+              <RelatedVerses verses={relatedVerses} />
+            )}
           </div>
         </div>
 
@@ -249,6 +290,7 @@ export default async function VersePage({ params }: VersePageProps) {
           )}
         </div>
       </div>
-    </div>
+      </div>
+    </>
   )
 }
