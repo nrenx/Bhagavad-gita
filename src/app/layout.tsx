@@ -4,6 +4,7 @@ import { PageTransition } from "@/components/ui/animations";
 import { SkipLink } from "@/components/ui/skip-link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { getAssetPath, getAssetUrl, SITE_BASE_URL } from "@/lib/utils";
 import "./globals.css";
 
@@ -130,6 +131,7 @@ export default function RootLayout({
         className="font-body antialiased bg-gradient-to-br from-slate-50 via-white to-slate-100 min-h-screen"
         suppressHydrationWarning={true}
       >
+        <GoogleAnalytics />
         <SkipLink href="#main-content">Skip to main content</SkipLink>
         <div className="relative">
           <Header />
