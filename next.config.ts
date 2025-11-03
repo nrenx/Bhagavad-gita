@@ -1,8 +1,21 @@
 import type { NextConfig } from "next";
 
+// GitHub Pages configuration
+const isGitHubPages = process.env.NEXT_PUBLIC_BASE_PATH !== undefined;
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 const nextConfig: NextConfig = {
+  // Configure base path for GitHub Pages deployment
+  basePath: basePath,
+  
+  // Asset prefix for static files (required for GitHub Pages)
+  assetPrefix: basePath,
+  
   // Image optimization configuration
   images: {
+    // Disable image optimization for static export (GitHub Pages)
+    unoptimized: true,
+    
     // Enable modern image formats
     formats: ['image/webp', 'image/avif'],
     
