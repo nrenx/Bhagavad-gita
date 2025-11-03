@@ -1,19 +1,41 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-const FALLBACK_BASE_URL = "https://bhagavad-gita.org";
-const RAW_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || FALLBACK_BASE_URL;
+const FALLBACK_PUBLIC_ORIGIN = process.env.NEXT_PUBLIC_BASE_ORIGIN || "https://bhagavad-gita.org";
+const RAW_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const ENV_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH;
+const GITHUB_REPOSITORY = process.env.GITHUB_REPOSITORY;
 
-let parsedBaseUrl: URL;
+let parsedOrigin: string | undefined;
+let derivedPath = "";
 
-try {
-  parsedBaseUrl = new URL(RAW_BASE_URL);
-} catch {
-  parsedBaseUrl = new URL(FALLBACK_BASE_URL);
+if (RAW_BASE_URL) {
+  try {
+    const parsed = new URL(RAW_BASE_URL);
+    parsedOrigin = parsed.origin;
+    derivedPath = parsed.pathname.replace(/\/$/, "");
+  } catch (error) {
+    console.warn("Invalid NEXT_PUBLIC_BASE_URL provided, falling back to defaults", error);
+  }
 }
 
-export const SITE_BASE_ORIGIN = parsedBaseUrl.origin;
-export const SITE_BASE_PATH = parsedBaseUrl.pathname.replace(/\/$/, "");
+let repoOwner: string | undefined;
+let repoName: string | undefined;
+
+if (GITHUB_REPOSITORY) {
+  const [owner, name] = GITHUB_REPOSITORY.split("/");
+  repoOwner = owner;
+  repoName = name;
+}
+
+const githubOrigin = repoOwner ? `https://${repoOwner}.github.io` : undefined;
+const githubBasePath = repoName ? `/${repoName}` : undefined;
+
+const baseOrigin = parsedOrigin || githubOrigin || FALLBACK_PUBLIC_ORIGIN;
+const basePath = (ENV_BASE_PATH ?? derivedPath ?? githubBasePath ?? "").replace(/\/$/, "");
+
+export const SITE_BASE_ORIGIN = baseOrigin;
+export const SITE_BASE_PATH = basePath;
 export const SITE_BASE_URL = `${SITE_BASE_ORIGIN}${SITE_BASE_PATH || ""}`;
 
 if (process.env.NODE_ENV !== "production") {
