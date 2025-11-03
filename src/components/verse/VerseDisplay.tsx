@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -16,14 +16,10 @@ interface VerseDisplayProps {
 }
 
 export function VerseDisplay({ chapter, verse, content, className = '' }: VerseDisplayProps) {
-  const [copiedSection, setCopiedSection] = useState<string | null>(null);
-
   const copyToClipboard = async (text: string, section: string) => {
     try {
       await navigator.clipboard.writeText(text);
-      setCopiedSection(section);
       toast.success(`${section} copied to clipboard`);
-      setTimeout(() => setCopiedSection(null), 2000);
     } catch (error) {
       console.error('Failed to copy text:', error);
       toast.error('Failed to copy text');

@@ -13,7 +13,6 @@ const inter = Inter({
   display: "swap",
 });
 
-const HERO_IMAGE_PATH = getAssetPath('/images/bhagavad-image.png');
 const HERO_IMAGE_URL = getAssetUrl('/images/bhagavad-image.png');
 const LOGO_IMAGE_PATH = getAssetPath('/images/logo.png');
 const FAVICON_PATH = getAssetPath('/favicon.png');

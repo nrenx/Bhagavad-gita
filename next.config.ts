@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 // GitHub Pages configuration
-const isGitHubPages = process.env.NEXT_PUBLIC_BASE_PATH !== undefined;
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 const nextConfig: NextConfig = {
