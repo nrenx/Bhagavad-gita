@@ -4,7 +4,7 @@ import { PageTransition } from "@/components/ui/animations";
 import { SkipLink } from "@/components/ui/skip-link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { getAssetPath, getAssetUrl } from "@/lib/utils";
+import { getAssetPath, getAssetUrl, SITE_BASE_URL } from "@/lib/utils";
 import "./globals.css";
 
 const inter = Inter({
@@ -13,7 +13,6 @@ const inter = Inter({
   display: "swap",
 });
 
-const DEFAULT_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://bhagavad-gita.org';
 const HERO_IMAGE_PATH = getAssetPath('/images/bhagavad-image.png');
 const HERO_IMAGE_URL = getAssetUrl('/images/bhagavad-image.png');
 const LOGO_IMAGE_PATH = getAssetPath('/images/logo.png');
@@ -49,14 +48,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(DEFAULT_BASE_URL),
+  metadataBase: new URL(SITE_BASE_URL),
   alternates: {
-    canonical: DEFAULT_BASE_URL,
+    canonical: SITE_BASE_URL,
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: DEFAULT_BASE_URL,
+    url: SITE_BASE_URL,
     title: 'Bhagavad Gita - Sacred Text & Wisdom',
     description: 'Complete Bhagavad Gita with Sanskrit verses, English translations, and spiritual commentary',
     siteName: 'Bhagavad Gita Wisdom',
