@@ -1,0 +1,21 @@
+# Robots.txt for Bhagavad Gita Website
+# Allow all search engines to crawl all pages
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://nrenx.github.io/Bhagvad-gita-website/sitemap.xml
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1
+
+# Disallow specific files if needed (none for now)
+# Disallow: /api/
+# Disallow: /_next/static/
+
+# Allow important resources
+Allow: /images/
+Allow: /chapters/
+Allow: /about
+Allow: /donate

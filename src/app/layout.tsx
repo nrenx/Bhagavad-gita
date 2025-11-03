@@ -5,6 +5,8 @@ import { SkipLink } from "@/components/ui/skip-link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { StructuredData } from "@/components/seo/StructuredData";
+import { generateWebsiteSchema, generateOrganizationSchema } from "@/lib/seo-structured-data";
 import { getAssetPath, getAssetUrl, SITE_BASE_URL } from "@/lib/utils";
 import "./globals.css";
 
@@ -108,9 +110,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Generate structured data for the website
+  const websiteSchema = generateWebsiteSchema();
+  const organizationSchema = generateOrganizationSchema();
+
   return (
   <html lang="en" className={inter.variable}>
       <head>
+        <StructuredData data={[websiteSchema, organizationSchema]} />
+        {/* Language alternatives for SEO */}
+        <link rel="alternate" hrefLang="en" href={SITE_BASE_URL} />
+        <link rel="alternate" hrefLang="hi" href={`${SITE_BASE_URL}?lang=hi`} />
+        <link rel="alternate" hrefLang="x-default" href={SITE_BASE_URL} />
         {/* Preload critical fonts */}
         <link
           rel="preconnect"

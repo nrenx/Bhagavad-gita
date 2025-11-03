@@ -5,7 +5,10 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { getAllChapters, getChapterInfo, getChapterVerses } from '@/lib/data';
+import { StructuredData } from '@/components/seo/StructuredData';
+import { generateChapterSchema, generateBreadcrumbSchema } from '@/lib/seo-structured-data';
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
@@ -77,26 +80,37 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
   const hasNextChapter = chapterNumber < 18;
   const hasPrevChapter = chapterNumber > 1;
 
+  // Generate structured data
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Chapters', url: '/chapters' },
+    { name: `Chapter ${chapterNumber}`, url: `/chapters/${chapterNumber}` },
+  ]);
+
+  const chapterSchema = generateChapterSchema(
+    chapterNumber,
+    chapterInfo.title,
+    chapterInfo.verseCount,
+    chapterInfo.description
+  );
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50">
-      <main>
-        {/* Breadcrumb */}
-        <div className="bg-white border-b border-slate-200">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <nav className="flex items-center space-x-2 text-sm text-slate-600">
-              <Link href="/" className="hover:text-orange-600 transition-colors flex items-center">
-                <Home className="w-4 h-4 mr-1" />
-                Home
-              </Link>
-              <ChevronRight className="w-4 h-4" />
-              <Link href="/chapters" className="hover:text-orange-600 transition-colors">
-                Chapters
-              </Link>
-              <ChevronRight className="w-4 h-4" />
-              <span className="text-slate-800 font-medium">Chapter {chapterNumber}</span>
-            </nav>
+    <>
+      <StructuredData data={[breadcrumbSchema, chapterSchema]} />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50">
+        <main>
+          {/* Breadcrumb */}
+          <div className="bg-white border-b border-slate-200">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+              <Breadcrumb
+                items={[
+                  { label: 'Home', href: '/', icon: <Home className="w-4 h-4" /> },
+                  { label: 'Chapters', href: '/chapters' },
+                  { label: `Chapter ${chapterNumber}`, href: `/chapters/${chapterNumber}` },
+                ]}
+              />
+            </div>
           </div>
-        </div>
 
         {/* Hero Section */}
         <section className="relative py-16 lg:py-24 overflow-hidden">
@@ -240,5 +254,6 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
         </section>
       </main>
     </div>
+    </>
   );
 }
