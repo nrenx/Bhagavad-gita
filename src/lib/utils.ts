@@ -16,6 +16,14 @@ export const SITE_BASE_ORIGIN = parsedBaseUrl.origin;
 export const SITE_BASE_PATH = parsedBaseUrl.pathname.replace(/\/$/, "");
 export const SITE_BASE_URL = `${SITE_BASE_ORIGIN}${SITE_BASE_PATH || ""}`;
 
+if (process.env.NODE_ENV !== "production") {
+  console.debug("Site base configuration", {
+    SITE_BASE_ORIGIN,
+    SITE_BASE_PATH,
+    SITE_BASE_URL,
+  });
+}
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
