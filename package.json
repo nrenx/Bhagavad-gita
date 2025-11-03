@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "next build",
+    "build:github": "NEXT_PUBLIC_BASE_PATH=/Bhagvad-gita-website NEXT_PUBLIC_BASE_URL=https://nrenx.github.io/Bhagvad-gita-website next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "serve": "npx serve out"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
