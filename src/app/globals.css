@@ -103,6 +103,10 @@ body {
   font-family: var(--font-body), system-ui, sans-serif;
   scroll-behavior: smooth;
 }
+  
+  .shadow-glow {
+    box-shadow: 0 12px 30px rgba(249, 115, 22, 0.18);
+  }
 
 /* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {

@@ -177,30 +177,19 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                 </p>
               </div>
 
-              <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3 lg:gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
                 {verseNumbers.map((verseNumber) => (
                   <Link 
                     key={verseNumber}
                     href={`/chapters/${chapterNumber}/verse/${verseNumber}`}
-                    className="group"
+                    className="group block"
                   >
-                    <Card className="hover:shadow-xl transition-all duration-300 hover:scale-105 border border-slate-200 hover:border-orange-300 bg-white cursor-pointer h-full">
-                      <CardContent className="p-2 sm:p-3 flex flex-col items-center justify-center text-center">
-                        <div className="w-7 h-7 sm:w-9 sm:h-9 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-xs sm:text-sm mb-1 sm:mb-1.5 group-hover:shadow-lg transition-shadow">
-                          {verseNumber}
-                        </div>
-                        <p className="text-[10px] sm:text-xs font-bold text-slate-800 group-hover:text-orange-600 transition-colors mb-0.5">
-                          Verse {verseNumber}
-                        </p>
-                        <p className="text-[9px] sm:text-[10px] text-slate-500 mb-0.5 sm:mb-1">
-                          {chapterNumber}.{verseNumber}
-                        </p>
-                        <div className="flex items-center text-orange-500 group-hover:text-orange-600 transition-colors">
-                          <span className="text-[9px] sm:text-[10px] font-medium">Read</span>
-                          <ArrowRight className="ml-0.5 h-2 w-2 sm:h-2.5 sm:w-2.5 group-hover:translate-x-0.5 transition-transform" />
-                        </div>
-                      </CardContent>
-                    </Card>
+                    <div className="rounded-2xl border border-white/40 bg-white/70 p-6 text-center shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-1 hover:border-orange-200 hover:shadow-glow">
+                      <p className="text-xs font-medium uppercase tracking-wide text-slate-500 mb-1">Verse</p>
+                      <p className="text-3xl font-bold text-orange-500 transition-transform duration-200 group-hover:scale-110 group-hover:text-orange-600">
+                        {chapterNumber}.{verseNumber}
+                      </p>
+                    </div>
                   </Link>
                 ))}
               </div>
