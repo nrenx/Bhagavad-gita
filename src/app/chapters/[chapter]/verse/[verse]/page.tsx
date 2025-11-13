@@ -3,20 +3,19 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ChevronLeft, ChevronRight, Home, Book } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { VerseDisplay } from '@/components/verse/VerseDisplay'
 import { LazyVideoPlayer } from '@/components/verse/LazyVideoPlayer'
-import { RelatedVerses, PopularVersesInChapter } from '@/components/verse/RelatedVerses'
+import { PopularVersesInChapter } from '@/components/verse/RelatedVerses'
 import { getAllVerseKeys, getChapterInfo, getAdjacentVerses } from '@/lib/data'
 import { getVerseDataFromFiles } from '@/lib/verse-data'
 import {
   getVerseVideoSources,
   resolveDefaultVideoLanguage,
 } from '@/lib/verse-videos'
-import { getRelatedVerses, getPopularVersesInChapter } from '@/lib/internal-links'
+import { getPopularVersesInChapter } from '@/lib/internal-links'
 import { StructuredData } from '@/components/seo/StructuredData'
 import { 
   generateVerseArticleSchema, 
@@ -129,8 +128,7 @@ export default async function VersePage({ params }: VersePageProps) {
   const defaultVideoLanguage = resolveDefaultVideoLanguage(verseVideos)
   const hasVideos = Object.keys(verseVideos).length > 0
   
-  // Get related content for internal linking
-  const relatedVerses = getRelatedVerses(chapterNum, verseNum)
+  // Get popular verses for internal linking
   const popularVerses = getPopularVersesInChapter(chapterNum, verseNum)
 
   // Generate structured data for SEO
@@ -157,7 +155,7 @@ export default async function VersePage({ params }: VersePageProps) {
   return (
     <>
       <StructuredData data={[breadcrumbSchema, articleSchema, bookSchema]} />
-      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
+      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 overflow-x-hidden">
         <div className="container mx-auto px-4 py-8">
         {/* Breadcrumb Navigation */}
         <Breadcrumb 
@@ -172,7 +170,7 @@ export default async function VersePage({ params }: VersePageProps) {
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Verse Content */}
-          <div className="space-y-6">
+          <div className="space-y-6 min-w-0">
             <VerseDisplay 
               chapter={chapterNum}
               verse={verseNum}
@@ -181,33 +179,37 @@ export default async function VersePage({ params }: VersePageProps) {
           </div>
 
           {/* Video Player and Navigation */}
-          <div className="space-y-6">
+          <div className="space-y-6 min-w-0">
             {/* Video Player */}
-            <Card className="bg-white/70 backdrop-blur-sm border-orange-200">
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  Video Commentary
-                  <Badge variant="secondary" className="ml-2">
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+              <div className="bg-slate-50 px-6 py-3 border-b border-slate-200">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-600">
+                    Video Commentary
+                  </h3>
+                  <Badge variant={hasVideos ? "default" : "secondary"} className="text-xs">
                     {hasVideos ? 'Available' : 'Coming Soon'}
                   </Badge>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
+                </div>
+              </div>
+              <div className="p-6">
                 <LazyVideoPlayer 
                   chapter={chapterNum}
                   verse={verseNum}
                   videos={verseVideos}
                   defaultLanguage={defaultVideoLanguage}
                 />
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
             {/* Chapter Context */}
-            <Card className="bg-white/70 backdrop-blur-sm border-orange-200">
-              <CardHeader>
-                <CardTitle>Chapter Context</CardTitle>
-              </CardHeader>
-              <CardContent>
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+              <div className="bg-slate-50 px-6 py-3 border-b border-slate-200">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-600">
+                  Chapter Context
+                </h3>
+              </div>
+              <div className="p-6">
                 <div className="space-y-3">
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Summary</h4>
@@ -242,47 +244,42 @@ export default async function VersePage({ params }: VersePageProps) {
                     </>
                   )}
                 </div>
-              </CardContent>
-            </Card>
-            
-            {/* Related Verses */}
-            {relatedVerses.length > 0 && (
-              <RelatedVerses verses={relatedVerses} />
-            )}
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Bottom Navigation */}
-        <div className="mt-12 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="mt-12 grid grid-cols-3 gap-3 items-center">
           {previousVerse ? (
             <Link 
               href={`/chapters/${previousVerse.chapter}/verse/${previousVerse.verse}`}
-              className="order-1 sm:order-none"
+              className="justify-self-start"
             >
-              <Button size="lg" variant="outline" className="group">
-                <ChevronLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
-                Previous Verse
+              <Button size="sm" variant="outline" className="group w-full sm:w-auto">
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 sm:mr-2 group-hover:-translate-x-1 transition-transform" />
+                <span className="hidden sm:inline">Previous Verse</span>
               </Button>
             </Link>
           ) : (
             <div></div>
           )}
 
-          <Link href={`/chapters/${chapterNum}`}>
-            <Button size="lg" variant="secondary">
-              <Book className="w-5 h-5 mr-2" />
-              Chapter Overview
+          <Link href={`/chapters/${chapterNum}`} className="justify-self-center">
+            <Button size="sm" variant="secondary" className="w-full sm:w-auto">
+              <Book className="w-4 h-4 sm:w-5 sm:h-5 sm:mr-2" />
+              <span className="hidden sm:inline">Chapter Overview</span>
             </Button>
           </Link>
 
           {nextVerse ? (
             <Link 
               href={`/chapters/${nextVerse.chapter}/verse/${nextVerse.verse}`}
-              className="order-2 sm:order-none"
+              className="justify-self-end"
             >
-              <Button size="lg" variant="outline" className="group">
-                Next Verse
-                <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              <Button size="sm" variant="outline" className="group w-full sm:w-auto">
+                <span className="hidden sm:inline">Next Verse</span>
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 sm:ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           ) : (

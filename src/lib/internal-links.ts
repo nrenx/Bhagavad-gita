@@ -135,7 +135,7 @@ export function getPopularVersesInChapter(chapter: number, currentVerse: number)
 
   return keyVerses[chapter]
     .filter(v => v !== currentVerse && verseExists(chapter, v))
-    .slice(0, 3)
+    .slice(0, 4)
     .map(v => ({
       verse: v,
       title: `Verse ${v}`,

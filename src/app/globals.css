@@ -79,8 +79,21 @@
 }
 
 /* Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 * {
   border-color: hsl(var(--border));
+}
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 /* Enhanced Focus Indicators for Accessibility */

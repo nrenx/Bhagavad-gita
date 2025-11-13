@@ -81,21 +81,23 @@ export function PopularVersesInChapter({ chapter, verses, className = '' }: Popu
         <BookOpen className="w-4 h-4 mr-2 text-orange-600" />
         Key Verses in This Chapter
       </h4>
-      <div className="flex flex-wrap gap-2">
-        {verses.map(v => (
-          <Link
-            key={v.verse}
-            href={`/chapters/${chapter}/verse/${v.verse}`}
-            className="inline-block"
-          >
-            <Badge 
-              variant="outline" 
-              className="bg-white hover:bg-orange-100 border-orange-200 hover:border-orange-300 transition-colors cursor-pointer"
+      <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-orange-300 scrollbar-track-transparent pb-2">
+        <div className="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-4 gap-2 min-w-max sm:min-w-0">
+          {verses.map(v => (
+            <Link
+              key={v.verse}
+              href={`/chapters/${chapter}/verse/${v.verse}`}
+              className="block"
             >
-              {v.title}
-            </Badge>
-          </Link>
-        ))}
+              <Badge 
+                variant="outline" 
+                className="w-full justify-center py-2 bg-white hover:bg-orange-100 border-orange-200 hover:border-orange-300 transition-colors cursor-pointer whitespace-nowrap"
+              >
+                {v.title}
+              </Badge>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );

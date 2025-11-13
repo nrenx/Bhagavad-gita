@@ -58,14 +58,14 @@ export function LazyVideoPlayer(props: LazyVideoPlayerProps) {
       {isVisible ? (
         <VideoPlayer {...props} />
       ) : (
-        <div className="relative w-full max-w-sm mx-auto" style={{ aspectRatio: '9/16' }}>
-          <div className="flex items-center justify-center h-full bg-gradient-to-br from-orange-100 to-red-100 rounded-lg border border-orange-200">
+        <div className="relative w-full max-w-[225px] mx-auto h-[400px]">
+          <div className="flex items-center justify-center h-full bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl border-2 border-orange-200 shadow-lg">
             <Button
               size="lg"
               onClick={handleLoadClick}
-              className="bg-white hover:bg-gray-50 text-orange-600 shadow-lg"
+              className="bg-orange-500 hover:bg-orange-600 text-white shadow-md"
             >
-              <Play className="w-6 h-6 mr-2" />
+              <Play className="w-5 h-5 mr-2" />
               Load Video Commentary
             </Button>
           </div>
