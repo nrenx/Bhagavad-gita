@@ -67,9 +67,11 @@ const config: Config = {
 				'cosmic-gradient': 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
 			},
 			fontFamily: {
-				'sanskrit': ['Noto Sans Devanagari', 'serif'],
-				'heading': ['Inter', 'sans-serif'],
-				'body': ['Inter', 'sans-serif'],
+				'sanskrit': ['var(--font-devanagari)', 'serif'],
+				'devanagari': ['var(--font-devanagari)', 'serif'],
+				'heading': ['var(--font-poppins)', 'sans-serif'],
+				'body': ['var(--font-poppins)', 'sans-serif'],
+				'poppins': ['var(--font-poppins)', 'sans-serif'],
 			},
 		}
 	},

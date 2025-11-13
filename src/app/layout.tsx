@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins, Noto_Serif_Devanagari } from "next/font/google";
 import { PageTransition } from "@/components/ui/animations";
 import { SkipLink } from "@/components/ui/skip-link";
 import { Header } from "@/components/layout/Header";
@@ -10,9 +10,17 @@ import { generateWebsiteSchema, generateOrganizationSchema } from "@/lib/seo-str
 import { getAssetPath, getAssetUrl, SITE_BASE_URL } from "@/lib/utils";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin", "latin-ext"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+const notoSerifDevanagari = Noto_Serif_Devanagari({
+  variable: "--font-devanagari",
+  subsets: ["devanagari"],
+  weight: ["400", "600", "700"],
   display: "swap",
 });
 
@@ -115,7 +123,7 @@ export default function RootLayout({
   const organizationSchema = generateOrganizationSchema();
 
   return (
-  <html lang="en" className={inter.variable}>
+  <html lang="en" className={`${poppins.variable} ${notoSerifDevanagari.variable}`}>
       <head>
         <StructuredData data={[websiteSchema, organizationSchema]} />
         {/* Language alternatives for SEO */}
@@ -135,7 +143,7 @@ export default function RootLayout({
         />
         <link
           rel="preload"
-          href="https://fonts.gstatic.com/s/notosansdevanagari/v25/TuGKUUVrRomTS2TjqwC-JC7DWkDhVxOxYqx6QdZPnQ.woff2"
+          href="https://fonts.gstatic.com/s/notoserifdevanagari/v28/x3d-cl3IZKmUqiMg_9wBLLtzl22EayN7ehIdjEWqDJ7ItYs.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
