@@ -48,6 +48,10 @@ next-env.d.ts
 .windsurf/rules/byterover-rules.md
 .cursor/rules/byterover-rules.mdc
 .kiro/steering/byterover-rules.md
+
+# Large files to exclude
+/public/Bhagavad-gita-books
+/public/images/bhagavad-image.png
 .qoder/rules/byterover-rules.md
 .augment/rules/byterover-rules.md
 
