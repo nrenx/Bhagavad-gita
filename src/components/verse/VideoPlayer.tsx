@@ -86,18 +86,20 @@ export function VideoPlayer({
             </div>
           )}
 
-          {/* Video Player */}
-          <div className="relative w-full max-w-[225px] mx-auto h-[400px]">
-            <div className="overflow-hidden rounded-xl border-2 border-slate-200 bg-black h-full shadow-lg">
-              <iframe
-                key={currentVideo.videoId}
-                src={`https://www.youtube.com/embed/${currentVideo.videoId}?autoplay=0&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playsinline=1`}
-                className="h-full w-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                allowFullScreen
-                loading="lazy"
-                title={currentVideo.title}
-              />
+          {/* Video Player - Full Width on Mobile, Centered on Desktop */}
+          <div className="relative w-full max-w-full sm:max-w-[280px] lg:max-w-[320px] mx-auto">
+            <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
+              <div className="absolute inset-0 overflow-hidden rounded-xl border-2 border-slate-200 bg-black shadow-lg">
+                <iframe
+                  key={currentVideo.videoId}
+                  src={`https://www.youtube.com/embed/${currentVideo.videoId}?autoplay=0&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playsinline=1`}
+                  className="absolute inset-0 h-full w-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                  allowFullScreen
+                  loading="lazy"
+                  title={currentVideo.title}
+                />
+              </div>
             </div>
           </div>
 
@@ -115,18 +117,20 @@ export function VideoPlayer({
           </div>
         </div>
       ) : (
-        <div className="relative w-full max-w-[225px] mx-auto h-[400px]">
-          <div className="rounded-xl bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-200 flex items-center justify-center h-full">
-            <div className="text-center p-6">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-orange-100 flex items-center justify-center">
-                <Play className="w-8 h-8 text-orange-600" />
+        <div className="relative w-full max-w-full sm:max-w-[280px] lg:max-w-[320px] mx-auto">
+          <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-200 flex items-center justify-center">
+              <div className="text-center p-6">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-orange-100 flex items-center justify-center">
+                  <Play className="w-8 h-8 text-orange-600" />
+                </div>
+                <h3 className="text-base font-semibold text-slate-900 mb-2">
+                  Video Coming Soon
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Commentary for Chapter {chapter}, Verse {verse} will be available soon.
+                </p>
               </div>
-              <h3 className="text-base font-semibold text-slate-900 mb-2">
-                Video Coming Soon
-              </h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Commentary for Chapter {chapter}, Verse {verse} will be available soon.
-              </p>
             </div>
           </div>
         </div>

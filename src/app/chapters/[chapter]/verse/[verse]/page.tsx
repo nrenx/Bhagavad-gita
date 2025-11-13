@@ -192,7 +192,7 @@ export default async function VersePage({ params }: VersePageProps) {
                   </Badge>
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <LazyVideoPlayer 
                   chapter={chapterNum}
                   verse={verseNum}
