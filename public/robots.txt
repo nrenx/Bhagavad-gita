@@ -7,9 +7,6 @@ Allow: /
 # Sitemaps
 Sitemap: https://nrenx.github.io/Bhagavad-gita/sitemap.xml
 
-# Crawl-delay (optional, helps prevent server overload)
-Crawl-delay: 1
-
 # Disallow specific files if needed (none for now)
 # Disallow: /api/
 # Disallow: /_next/static/
