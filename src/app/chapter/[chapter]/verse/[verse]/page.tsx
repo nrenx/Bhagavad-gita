@@ -20,7 +20,8 @@ import { StructuredData } from '@/components/seo/StructuredData'
 import { 
   generateVerseArticleSchema, 
   generateBreadcrumbSchema,
-  generateBookSchema 
+  generateBookSchema,
+  generateVideoObjectSchema
 } from '@/lib/seo-structured-data'
 
 type VerseParams = {
@@ -59,18 +60,32 @@ export async function generateMetadata({ params }: VersePageProps): Promise<Meta
     : verseData.english
 
   return {
-    title: `Chapter ${chapterNum}, Verse ${verseNum} - ${chapterInfo.title} | Bhagvad Gita`,
+    title: `Chapter ${chapterNum}, Verse ${verseNum} - ${chapterInfo.title} | Bhagavad Gita`,
     description: versePreview,
     keywords: [
       `Chapter ${chapterNum}`,
       `Verse ${verseNum}`,
+      `BG ${chapterNum}.${verseNum}`,
+      `Bhagavad Gita ${chapterNum}.${verseNum}`,
+      `Bhagavad Gita Chapter ${chapterNum} Verse ${verseNum}`,
+      `Bhagavad Gita Chapter ${chapterNum} Verse ${verseNum} explanation`,
+      `Bhagavad Gita Chapter ${chapterNum} Verse ${verseNum} meaning`,
       chapterInfo.title,
       'Bhagavad Gita',
+      'Bhagavad Gita quotes',
+      'Bhagavad Gita slokas',
+      'Bhagavad Gita explanation',
+      'Bhagavad Gita videos',
+      'Bhagavad Gita YouTube videos',
+      'The Gita',
       'Sanskrit',
       'Hindu scripture',
+      'Hindu scripture online',
       'spiritual wisdom',
+      'Krishna teachings',
       'Krishna',
-      'Arjuna'
+      'Arjuna',
+      'Vyasa'
     ],
     openGraph: {
       title: `Chapter ${chapterNum}, Verse ${verseNum} - ${chapterInfo.title}`,
@@ -152,9 +167,30 @@ export default async function VersePage({ params }: VersePageProps) {
 
   const bookSchema = generateBookSchema()
 
+  // Generate video schema if videos are available
+  type SchemaType = ReturnType<typeof generateBreadcrumbSchema> | ReturnType<typeof generateVerseArticleSchema> | ReturnType<typeof generateBookSchema> | ReturnType<typeof generateVideoObjectSchema>;
+  const schemas: SchemaType[] = [breadcrumbSchema, articleSchema, bookSchema]
+  if (hasVideos && defaultVideoLanguage && verseVideos[defaultVideoLanguage]) {
+    const videoSchema = generateVideoObjectSchema(
+      chapterNum,
+      verseNum,
+      chapterInfo.title,
+      {
+        sanskrit: verseData.sanskrit,
+        english: verseData.english,
+      },
+      {
+        youtubeId: verseVideos[defaultVideoLanguage].videoId,
+        title: verseVideos[defaultVideoLanguage].title,
+        language: defaultVideoLanguage,
+      }
+    )
+    schemas.push(videoSchema)
+  }
+
   return (
     <>
-      <StructuredData data={[breadcrumbSchema, articleSchema, bookSchema]} />
+      <StructuredData data={schemas} />
       <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 overflow-x-hidden">
         <div className="container mx-auto px-4 py-8">
         {/* Breadcrumb Navigation */}

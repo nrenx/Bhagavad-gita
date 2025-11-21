@@ -51,12 +51,25 @@ export async function generateMetadata({ params }: ChapterPageProps): Promise<Me
     description: `${chapterInfo.description} - Complete chapter with ${chapterInfo.verseCount} verses, Sanskrit text, English translations, and commentary.`,
     keywords: [
       `Bhagavad Gita Chapter ${chapterInfo.number}`,
+      `BG Chapter ${chapterInfo.number}`,
+      `Chapter ${chapterInfo.number}`,
       chapterInfo.title,
+      `Bhagavad Gita ${chapterInfo.title}`,
+      `${chapterInfo.title} explanation`,
+      'Bhagavad Gita',
+      'Bhagavad Gita chapters',
+      'Bhagavad Gita quotes',
+      'Bhagavad Gita slokas',
+      'Bhagavad Gita explanation',
+      'Bhagavad Gita videos',
+      'The Gita',
       'Sanskrit verses',
       'spiritual wisdom',
       'Krishna teachings',
       'Hindu scripture',
-      'yoga philosophy'
+      'Hindu scripture online',
+      'yoga philosophy',
+      'Vyasa'
     ],
     openGraph: {
       title: `Chapter ${chapterInfo.number}: ${chapterInfo.title}`,

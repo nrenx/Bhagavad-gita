@@ -206,4 +206,47 @@ export function generateOrganizationSchema() {
   };
 }
 
+/**
+ * Generate VideoObject schema for verses with video content
+ */
+export function generateVideoObjectSchema(
+  chapter: number,
+  verse: number,
+  chapterTitle: string,
+  verseContent: {
+    sanskrit: string;
+    english: string;
+  },
+  videoData: {
+    youtubeId: string;
+    title?: string;
+    language?: string;
+  }
+) {
+  const url = `${SITE_BASE_URL}/chapter/${chapter}/verse/${verse}`;
+  const thumbnailUrl = `https://img.youtube.com/vi/${videoData.youtubeId}/maxresdefault.jpg`;
+  const embedUrl = `https://www.youtube.com/embed/${videoData.youtubeId}`;
+  
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: videoData.title || `Bhagavad Gita Chapter ${chapter} Verse ${verse} - ${chapterTitle}`,
+    description: verseContent.english.substring(0, 200) + '...',
+    thumbnailUrl: thumbnailUrl,
+    uploadDate: '2024-01-01',
+    embedUrl: embedUrl,
+    contentUrl: `https://www.youtube.com/watch?v=${videoData.youtubeId}`,
+    duration: 'PT10M', // Placeholder duration
+    inLanguage: videoData.language || 'te',
+    publisher: {
+      '@type': 'Organization',
+      name: 'Bhagavad Gita Wisdom',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_BASE_URL}/images/logo.png`,
+      },
+    },
+  };
+}
+
 

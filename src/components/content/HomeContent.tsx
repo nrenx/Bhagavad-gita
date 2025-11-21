@@ -66,6 +66,9 @@ export function HomeContent() {
                     Discover the timeless teachings of Lord Krishna through the complete Bhagavad Gita 
                     with Sanskrit verses, clear English translations, and enlightening video commentary.
                   </p>
+                  <p className="text-sm text-slate-500 italic mb-2">
+                    Composed by Maharishi Ved Vyasa
+                  </p>
                 </ParallaxText>
               </AnimatedSection>
 
