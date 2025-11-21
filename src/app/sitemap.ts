@@ -7,6 +7,7 @@ export const revalidate = 0
 const LAST_MODIFIED = new Date('2024-01-01T00:00:00Z')
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  // Base URL will be automatically handled by Next.js based on basePath config
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://nrenx.github.io/Bhagavad-gita'
   
   const staticPages = [
