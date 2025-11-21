@@ -13,7 +13,7 @@ export interface SiteRoute {
  */
 export function generateAllRoutes(): SiteRoute[] {
   const routes: SiteRoute[] = [];
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bhagavad-gita.org';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://nrenx.github.io/Bhagavad-gita';
 
   // Homepage
   routes.push({
