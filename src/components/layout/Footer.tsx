@@ -108,22 +108,22 @@ export function Footer() {
             <h3 className="text-lg font-semibold mb-4 text-orange-300">Popular Chapters</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/chapters/1" className="text-slate-300 hover:text-orange-300 transition-colors">
+                <Link href="/chapter/1" className="text-slate-300 hover:text-orange-300 transition-colors">
                   Chapter 1: Arjuna's Dilemma
                 </Link>
               </li>
               <li>
-                <Link href="/chapters/2" className="text-slate-300 hover:text-orange-300 transition-colors">
+                <Link href="/chapter/2" className="text-slate-300 hover:text-orange-300 transition-colors">
                   Chapter 2: Sankhya Yoga
                 </Link>
               </li>
               <li>
-                <Link href="/chapters/11" className="text-slate-300 hover:text-orange-300 transition-colors">
+                <Link href="/chapter/11" className="text-slate-300 hover:text-orange-300 transition-colors">
                   Chapter 11: Universal Form
                 </Link>
               </li>
               <li>
-                <Link href="/chapters/18" className="text-slate-300 hover:text-orange-300 transition-colors">
+                <Link href="/chapter/18" className="text-slate-300 hover:text-orange-300 transition-colors">
                   Chapter 18: Liberation
                 </Link>
               </li>

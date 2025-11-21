@@ -104,7 +104,7 @@ export function HomeContent() {
                   </MagneticElement>
                   <MagneticElement>
                     <Button size="lg" variant="outline" asChild className="border-slate-300 hover:bg-slate-50">
-                      <Link href="/chapters/1/verse/1" className="flex items-center">
+                      <Link href="/chapter/1/verse/1" className="flex items-center">
                         Read First Verse
                         <BookOpen className="ml-2 h-5 w-5" />
                       </Link>
@@ -379,7 +379,7 @@ export function HomeContent() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-white text-slate-800 hover:bg-slate-100" asChild>
-                <Link href="/chapters/1/verse/1" className="flex items-center">
+                <Link href="/chapter/1/verse/1" className="flex items-center">
                   Start Reading Now
                   <BookOpen className="ml-2 h-5 w-5" />
                 </Link>

@@ -131,7 +131,7 @@ When someone searches **"bhagavad gita chapter 1 verse 1"**:
 
 **Google sees:**
 1. Title matches: ✅ "Chapter 1, Verse 1"
-2. URL matches: ✅ `/chapters/1/verse/1`
+2. URL matches: ✅ `/chapter/1/verse/1`
 3. Content matches: ✅ Actual verse text about Chapter 1, Verse 1
 4. Structured data confirms: ✅ "This IS Chapter 1, Verse 1"
 
@@ -153,7 +153,7 @@ When someone searches **"bhagavad gita chapter 1 verse 1"**:
 
 1. **Layer 4 (Sitemap) helps Google find the page**
    - Google crawler reads sitemap.xml
-   - Finds: "https://yoursite.com/chapters/2/verse/47"
+   - Finds: "https://yoursite.com/chapter/2/verse/47"
    - Visits and indexes it
 
 2. **Layer 1 (Pre-rendering) makes it fast**
@@ -318,7 +318,7 @@ Crawl-delay: 1
 
 ### **Pages WITH Metadata** ✅
 
-#### `src/app/chapters/[chapter]/verse/[verse]/page.tsx`
+#### `src/app/chapter/[chapter]/verse/[verse]/page.tsx`
 **What it does:** SEO for individual verse pages (~700 pages)
 
 **Metadata includes:**
@@ -327,7 +327,7 @@ Crawl-delay: 1
 - Keywords: Chapter number, verse number, chapter title, core terms
 - Open Graph: Article type with preview image
 - Twitter card: Summary with large image
-- Canonical URL: `/chapters/{n}/verse/{m}`
+- Canonical URL: `/chapter/{n}/verse/{m}`
 
 **Structured data:**
 - Article schema (verse as an article)
@@ -346,7 +346,7 @@ Crawl-delay: 1
 
 ---
 
-#### `src/app/chapters/[chapter]/page.tsx`
+#### `src/app/chapter/[chapter]/page.tsx`
 **What it does:** SEO for chapter overview pages (18 pages)
 
 **Metadata includes:**
@@ -450,7 +450,7 @@ NEXT_PUBLIC_BASE_PATH=/Bhagvad-gita-website
 ### **Medium Priority** 🟡
 
 - [ ] **Add `article:published_time`** to verse Open Graph metadata
-  - File: `src/app/chapters/[chapter]/verse/[verse]/page.tsx`
+  - File: `src/app/chapter/[chapter]/verse/[verse]/page.tsx`
 - [ ] **Add VideoObject schema** for verses with YouTube videos
   - File: `src/lib/seo-structured-data.ts`
   - Use existing video data from `src/lib/verse-videos.ts`
@@ -519,7 +519,7 @@ Check SEO score (should be 90+)
 - Static pre-rendering for fast indexing
 - Open Graph and Twitter cards configured
 - Google Search Console verified
-- Semantic URL structure (`/chapters/1/verse/1`)
+- Semantic URL structure (`/chapter/1/verse/1`)
 
 ### **Weaknesses** ⚠️
 - Missing metadata on 3 static pages (chapters, about, donate)

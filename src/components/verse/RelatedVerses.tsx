@@ -32,7 +32,7 @@ export function RelatedVerses({ verses, className = '' }: RelatedVersesProps) {
           {verses.map((verse, index) => (
             <Link
               key={`${verse.chapter}-${verse.verse}`}
-              href={`/chapters/${verse.chapter}/verse/${verse.verse}`}
+              href={`/chapter/${verse.chapter}/verse/${verse.verse}`}
               className="block group"
             >
               <div className="p-4 bg-white rounded-lg border border-blue-100 hover:border-blue-300 hover:shadow-md transition-all duration-200">
@@ -86,7 +86,7 @@ export function PopularVersesInChapter({ chapter, verses, className = '' }: Popu
           {verses.map(v => (
             <Link
               key={v.verse}
-              href={`/chapters/${chapter}/verse/${v.verse}`}
+              href={`/chapter/${chapter}/verse/${v.verse}`}
               className="block"
             >
               <Badge 

@@ -76,7 +76,7 @@ export async function generateMetadata({ params }: VersePageProps): Promise<Meta
       title: `Chapter ${chapterNum}, Verse ${verseNum} - ${chapterInfo.title}`,
       description: versePreview,
       type: 'article',
-      url: `/chapters/${chapterNum}/verse/${verseNum}`,
+      url: `/chapter/${chapterNum}/verse/${verseNum}`,
       images: [
         {
           url: '/images/ACEE6900-5949-4291-A3C6-83379D7BDB4E_1_105_c.jpeg',
@@ -93,7 +93,7 @@ export async function generateMetadata({ params }: VersePageProps): Promise<Meta
       images: ['/images/ACEE6900-5949-4291-A3C6-83379D7BDB4E_1_105_c.jpeg']
     },
     alternates: {
-      canonical: `/chapters/${chapterNum}/verse/${verseNum}`
+      canonical: `/chapter/${chapterNum}/verse/${verseNum}`
     }
   }
 }
@@ -135,8 +135,8 @@ export default async function VersePage({ params }: VersePageProps) {
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: '/' },
     { name: 'Chapters', url: '/chapters' },
-    { name: `Chapter ${chapterNum}`, url: `/chapters/${chapterNum}` },
-    { name: `Verse ${verseNum}`, url: `/chapters/${chapterNum}/verse/${verseNum}` },
+    { name: `Chapter ${chapterNum}`, url: `/chapter/${chapterNum}` },
+    { name: `Verse ${verseNum}`, url: `/chapter/${chapterNum}/verse/${verseNum}` },
   ])
 
   const articleSchema = generateVerseArticleSchema(
@@ -162,8 +162,8 @@ export default async function VersePage({ params }: VersePageProps) {
           items={[
             { label: 'Home', href: '/', icon: <Home className="w-4 h-4" /> },
             { label: 'Chapters', href: '/chapters', icon: <Book className="w-4 h-4" /> },
-            { label: `Chapter ${chapterNum}`, href: `/chapters/${chapterNum}` },
-            { label: `Verse ${verseNum}`, href: `/chapters/${chapterNum}/verse/${verseNum}` },
+            { label: `Chapter ${chapterNum}`, href: `/chapter/${chapterNum}` },
+            { label: `Verse ${verseNum}`, href: `/chapter/${chapterNum}/verse/${verseNum}` },
           ]}
           className="mb-8"
         />
@@ -253,7 +253,7 @@ export default async function VersePage({ params }: VersePageProps) {
         <div className="mt-12 grid grid-cols-3 gap-3 items-center">
           {previousVerse ? (
             <Link 
-              href={`/chapters/${previousVerse.chapter}/verse/${previousVerse.verse}`}
+              href={`/chapter/${previousVerse.chapter}/verse/${previousVerse.verse}`}
               className="justify-self-start"
             >
               <Button size="sm" variant="outline" className="group w-full sm:w-auto">
@@ -265,7 +265,7 @@ export default async function VersePage({ params }: VersePageProps) {
             <div></div>
           )}
 
-          <Link href={`/chapters/${chapterNum}`} className="justify-self-center">
+          <Link href={`/chapter/${chapterNum}`} className="justify-self-center">
             <Button size="sm" variant="secondary" className="w-full sm:w-auto">
               <Book className="w-4 h-4 sm:w-5 sm:h-5 sm:mr-2" />
               <span className="hidden sm:inline">Chapter Overview</span>
@@ -274,7 +274,7 @@ export default async function VersePage({ params }: VersePageProps) {
 
           {nextVerse ? (
             <Link 
-              href={`/chapters/${nextVerse.chapter}/verse/${nextVerse.verse}`}
+              href={`/chapter/${nextVerse.chapter}/verse/${nextVerse.verse}`}
               className="justify-self-end"
             >
               <Button size="sm" variant="outline" className="group w-full sm:w-auto">

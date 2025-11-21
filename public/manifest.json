@@ -33,14 +33,14 @@
       "name": "Chapter 1",
       "short_name": "Ch. 1",
       "description": "Arjuna's Dilemma",
-      "url": "/chapters/1",
+      "url": "/chapter/1",
       "icons": [{ "src": "/images/logo.png", "sizes": "512x512" }]
     },
     {
       "name": "Chapter 2",
       "short_name": "Ch. 2",
       "description": "The Yoga of Knowledge",
-      "url": "/chapters/2",
+      "url": "/chapter/2",
       "icons": [{ "src": "/images/logo.png", "sizes": "512x512" }]
     }
   ]

@@ -13,7 +13,7 @@ interface ChapterCardProps {
 
 export function ChapterCard({ chapter, className = '' }: ChapterCardProps) {
   return (
-    <Link href={`/chapters/${chapter.number}`}>
+    <Link href={`/chapter/${chapter.number}`}>
       <Card className={`group relative overflow-hidden hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-orange-300 bg-white h-full ${className}`}>
         {/* Gradient accent bar */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-400 via-red-500 to-orange-600" />

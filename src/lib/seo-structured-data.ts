@@ -58,7 +58,7 @@ export function generateVerseArticleSchema(
     romanized: string;
   }
 ) {
-  const url = `${SITE_BASE_URL}/chapters/${chapter}/verse/${verse}`;
+  const url = `${SITE_BASE_URL}/chapter/${chapter}/verse/${verse}`;
   
   return {
     '@context': 'https://schema.org',
@@ -164,7 +164,7 @@ export function generateChapterSchema(
       '@type': 'Book',
       name: 'Bhagavad Gita',
     },
-    url: `${SITE_BASE_URL}/chapters/${chapterNumber}`,
+    url: `${SITE_BASE_URL}/chapter/${chapterNumber}`,
     numberOfPages: verseCount,
   };
 }

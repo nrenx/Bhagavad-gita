@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: ChapterPageProps): Promise<Me
     openGraph: {
       title: `Chapter ${chapterInfo.number}: ${chapterInfo.title}`,
       description: chapterInfo.description,
-      url: `/chapters/${chapterInfo.number}`,
+      url: `/chapter/${chapterInfo.number}`,
     },
   };
 }
@@ -84,7 +84,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: '/' },
     { name: 'Chapters', url: '/chapters' },
-    { name: `Chapter ${chapterNumber}`, url: `/chapters/${chapterNumber}` },
+    { name: `Chapter ${chapterNumber}`, url: `/chapter/${chapterNumber}` },
   ]);
 
   const chapterSchema = generateChapterSchema(
@@ -106,7 +106,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                 items={[
                   { label: 'Home', href: '/', icon: <Home className="w-4 h-4" /> },
                   { label: 'Chapters', href: '/chapters' },
-                  { label: `Chapter ${chapterNumber}`, href: `/chapters/${chapterNumber}` },
+                  { label: `Chapter ${chapterNumber}`, href: `/chapter/${chapterNumber}` },
                 ]}
               />
             </div>
@@ -148,7 +148,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
               {/* Quick Actions */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" asChild className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white shadow-lg">
-                  <Link href={`/chapters/${chapterNumber}/verse/1`} className="flex items-center">
+                  <Link href={`/chapter/${chapterNumber}/verse/1`} className="flex items-center">
                     Start Reading
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
@@ -181,7 +181,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                 {verseNumbers.map((verseNumber) => (
                   <Link 
                     key={verseNumber}
-                    href={`/chapters/${chapterNumber}/verse/${verseNumber}`}
+                    href={`/chapter/${chapterNumber}/verse/${verseNumber}`}
                     className="group block"
                   >
                     <div className="rounded-2xl border border-white/40 bg-white/70 p-6 text-center shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-1 hover:border-orange-200 hover:shadow-glow">
@@ -206,7 +206,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                 <div className="w-full sm:w-auto">
                   {hasPrevChapter ? (
                     <Button variant="outline" size="lg" asChild className="w-full sm:w-auto border-slate-300 hover:bg-slate-50">
-                      <Link href={`/chapters/${chapterNumber - 1}`} className="flex items-center">
+                      <Link href={`/chapter/${chapterNumber - 1}`} className="flex items-center">
                         <ArrowLeft className="mr-2 h-5 w-5" />
                         Previous Chapter
                       </Link>
@@ -228,7 +228,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                 <div className="w-full sm:w-auto">
                   {hasNextChapter ? (
                     <Button size="lg" asChild className="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white">
-                      <Link href={`/chapters/${chapterNumber + 1}`} className="flex items-center">
+                      <Link href={`/chapter/${chapterNumber + 1}`} className="flex items-center">
                         Next Chapter
                         <ArrowRight className="ml-2 h-5 w-5" />
                       </Link>

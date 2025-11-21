@@ -16,6 +16,6 @@ Crawl-delay: 1
 
 # Allow important resources
 Allow: /images/
-Allow: /chapters/
+Allow: /chapter/
 Allow: /about
 Allow: /donate

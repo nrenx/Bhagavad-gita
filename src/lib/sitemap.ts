@@ -37,7 +37,7 @@ export function generateAllRoutes(): SiteRoute[] {
   const chapters = getAllChapters();
   chapters.forEach(chapter => {
     routes.push({
-      url: `${baseUrl}/chapters/${chapter.number}`,
+      url: `${baseUrl}/chapter/${chapter.number}`,
       title: `Chapter ${chapter.number}: ${chapter.title} - Bhagavad Gita`,
       description: `${chapter.description} - Complete chapter with ${chapter.verseCount} verses`,
       priority: 0.8,
@@ -47,7 +47,7 @@ export function generateAllRoutes(): SiteRoute[] {
     // Individual verses
     for (let verse = 1; verse <= chapter.verseCount; verse++) {
       routes.push({
-        url: `${baseUrl}/chapters/${chapter.number}/verse/${verse}`,
+        url: `${baseUrl}/chapter/${chapter.number}/verse/${verse}`,
         title: `Chapter ${chapter.number}, Verse ${verse} - ${chapter.title}`,
         description: `Sanskrit shloka, romanized pronunciation, and English translation of verse ${chapter.number}.${verse}`,
         priority: 0.7,
